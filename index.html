@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>婴儿奶量计算器</title>
     <style>
         body {
@@ -13,16 +14,18 @@
             justify-content: flex-start;
             min-height: 100vh;
             margin: 0;
-            padding: 30px;
+            padding: 20px;
         }
 
         .card {
             background: #fff;
-            padding: 25px;
+            padding: 20px;
             border-radius: 16px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            width: 420px;
+            width: 100%;
+            max-width: 420px;
             margin-bottom: 25px;
+            box-sizing: border-box;
         }
 
         h2 {
@@ -45,6 +48,7 @@
             border-radius: 8px;
             border: 1px solid #ccc;
             font-size: 16px;
+            box-sizing: border-box;
         }
 
         button {
@@ -67,6 +71,7 @@
             padding: 15px;
             border-radius: 10px;
             line-height: 1.7;
+            word-break: break-word;
         }
 
         .rules {
@@ -74,10 +79,13 @@
             padding: 20px;
             border-radius: 16px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-            width: 700px;
+            width: 100%;
+            max-width: 700px;
+            box-sizing: border-box;
         }
 
-        table {
+        /* 原始表格，仅大屏显示 */
+        .rules table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 10px;
@@ -95,6 +103,64 @@
 
         .highlight {
             background-color: #eff6ff;
+        }
+
+        /* 响应式优化 */
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+
+            input, button {
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            .result {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            .rules {
+                padding: 15px;
+            }
+
+            th, td {
+                padding: 6px 8px;
+            }
+
+            /* 手机下表格改卡片式展示 */
+            .rules table, .rules thead, .rules tbody, .rules th, .rules td, .rules tr {
+                display: block;
+                width: 100%;
+            }
+
+            .rules thead {
+                display: none;
+            }
+
+            .rules tr {
+                margin-bottom: 15px;
+                border: 1px solid #e5e7eb;
+                border-radius: 12px;
+                padding: 10px;
+                background-color: #f9fafb;
+            }
+
+            .rules td {
+                text-align: left;
+                border: none;
+                padding: 6px 0;
+                position: relative;
+            }
+
+            .rules td::before {
+                content: attr(data-label);
+                font-weight: bold;
+                display: inline-block;
+                width: 140px;
+                color: #333;
+            }
         }
     </style>
 </head>
@@ -132,28 +198,28 @@
         </thead>
         <tbody>
         <tr class="highlight">
-            <td>0–1个月</td>
-            <td>150–200</td>
-            <td>8次</td>
-            <td>新生儿期，胃容量小，喂奶频繁</td>
+            <td data-label="月龄阶段">0–1个月</td>
+            <td data-label="每日每公斤奶量 (ml/kg)">150–200</td>
+            <td data-label="建议每日喂奶次数">8次</td>
+            <td data-label="说明">新生儿期，胃容量小，喂奶频繁</td>
         </tr>
         <tr>
-            <td>1–3个月</td>
-            <td>120–150</td>
-            <td>6次</td>
-            <td>吃奶间隔可延长</td>
+            <td data-label="月龄阶段">1–3个月</td>
+            <td data-label="每日每公斤奶量 (ml/kg)">120–150</td>
+            <td data-label="建议每日喂奶次数">6次</td>
+            <td data-label="说明">吃奶间隔可延长</td>
         </tr>
         <tr>
-            <td>3–6个月</td>
-            <td>100–120</td>
-            <td>5次</td>
-            <td>逐渐形成规律喂养</td>
+            <td data-label="月龄阶段">3–6个月</td>
+            <td data-label="每日每公斤奶量 (ml/kg)">100–120</td>
+            <td data-label="建议每日喂奶次数">5次</td>
+            <td data-label="说明">逐渐形成规律喂养</td>
         </tr>
         <tr>
-            <td>6个月以上</td>
-            <td>80–100</td>
-            <td>4次</td>
-            <td>已开始添加辅食，奶量减少</td>
+            <td data-label="月龄阶段">6个月以上</td>
+            <td data-label="每日每公斤奶量 (ml/kg)">80–100</td>
+            <td data-label="建议每日喂奶次数">4次</td>
+            <td data-label="说明">已开始添加辅食，奶量减少</td>
         </tr>
         </tbody>
     </table>
