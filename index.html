@@ -1,19 +1,178 @@
 ---
-layout: tool
+layout: default
 title: 婴儿奶量计算器
+excerpt: 按宝宝月龄和体重快速估算每日总奶量与每次奶量，适合新手父母做喂养参考。
+image: /assets/images/social-card.svg
+permalink: /
 ---
+<style>
+    body {
+        font-family: "Microsoft YaHei", sans-serif;
+        background-color: #f8fafc;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px;
+    }
 
-<div class="tool-card">
-    <h2 class="tool-title">婴儿奶量计算器 🍼</h2>
-    <label class="tool-label" for="age">宝宝月龄（月）</label>
-    <input class="tool-input" type="number" id="age" placeholder="请输入月龄，例如 2" min="0" max="24">
+    .card {
+        background: #fff;
+        padding: 20px;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        width: 100%;
+        max-width: 420px;
+        margin-bottom: 25px;
+        box-sizing: border-box;
+    }
 
-    <label class="tool-label" for="weight">宝宝体重（kg）</label>
-    <input class="tool-input" type="number" id="weight" placeholder="请输入体重，例如 5.5" step="0.1" min="1" max="20">
+    h2 {
+        margin-bottom: 15px;
+        color: #2563eb;
+        text-align: center;
+    }
 
-    <button class="tool-button" id="calculate-button" type="button">计算奶量</button>
+    label {
+        font-weight: bold;
+        display: block;
+        text-align: left;
+        margin-top: 10px;
+    }
 
-    <div id="result" class="tool-result tool-result-hidden"></div>
+    input, button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 6px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        box-sizing: border-box;
+    }
+
+    button {
+        background-color: #2563eb;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-top: 15px;
+    }
+
+    button:hover {
+        background-color: #1d4ed8;
+    }
+
+    .result {
+        margin-top: 15px;
+        font-size: 16px;
+        background-color: #f1f5f9;
+        padding: 15px;
+        border-radius: 10px;
+        line-height: 1.7;
+        word-break: break-word;
+    }
+
+    .rules {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 16px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        width: 100%;
+        max-width: 700px;
+        box-sizing: border-box;
+    }
+
+    .rules table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+
+    th, td {
+        border: 1px solid #e5e7eb;
+        padding: 8px 10px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #f3f4f6;
+    }
+
+    .highlight {
+        background-color: #eff6ff;
+    }
+
+    @media (max-width: 480px) {
+        body {
+            padding: 15px;
+        }
+
+        input, button {
+            font-size: 14px;
+            padding: 8px;
+        }
+
+        .result {
+            font-size: 14px;
+            padding: 10px;
+        }
+
+        .rules {
+            padding: 15px;
+        }
+
+        th, td {
+            padding: 6px 8px;
+        }
+
+        .rules table, .rules thead, .rules tbody, .rules th, .rules td, .rules tr {
+            display: block;
+            width: 100%;
+        }
+
+        .rules thead {
+            display: none;
+        }
+
+        .rules tr {
+            margin-bottom: 15px;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 10px;
+            background-color: #f9fafb;
+        }
+
+        .rules td {
+            text-align: left;
+            border: none;
+            padding: 6px 0;
+            position: relative;
+        }
+
+        .rules td::before {
+            content: attr(data-label);
+            font-weight: bold;
+            display: inline-block;
+            width: 140px;
+            color: #333;
+        }
+    }
+</style>
+
+<div class="card">
+    <h2>婴儿奶量计算器 🍼</h2>
+    <label>宝宝月龄（月）</label>
+    <input type="number" id="age" placeholder="请输入月龄，例如 2" min="0" max="24">
+
+    <label>宝宝体重（kg）</label>
+    <input type="number" id="weight" placeholder="请输入体重，例如 5.5" step="0.1" min="1" max="20">
+
+    <button onclick="calculateMilk()">计算奶量</button>
+
+    <div id="result" class="result" style="display:none;"></div>
 </div>
 
 <div class="tool-rules">
@@ -61,3 +220,44 @@ title: 婴儿奶量计算器
         </tbody>
     </table>
 </div>
+
+<script>
+    function calculateMilk() {
+        const age = parseFloat(document.getElementById("age").value);
+        const weight = parseFloat(document.getElementById("weight").value);
+        const resultDiv = document.getElementById("result");
+
+        if (isNaN(age) || isNaN(weight) || age < 0 || weight <= 0) {
+            resultDiv.style.display = "block";
+            resultDiv.innerHTML = "⚠️ 请输入正确的月龄和体重。";
+            return;
+        }
+
+        let dailyMin, dailyMax, times;
+
+        if (age <= 1) { dailyMin = 150; dailyMax = 200; times = 8; }
+        else if (age <= 3) { dailyMin = 120; dailyMax = 150; times = 6; }
+        else if (age <= 6) { dailyMin = 100; dailyMax = 120; times = 5; }
+        else { dailyMin = 80; dailyMax = 100; times = 4; }
+
+        const totalMin = weight * dailyMin;
+        const totalMax = weight * dailyMax;
+        const perMin = totalMin / times;
+        const perMax = totalMax / times;
+
+        resultDiv.style.display = "block";
+        resultDiv.innerHTML = `
+        <strong>计算结果：</strong><br>
+        👶 宝宝月龄：${age} 个月<br>
+        ⚖️ 宝宝体重：${weight.toFixed(1)} kg<br><br>
+        📅 <strong>每日奶量计算：</strong><br>
+        = ${weight.toFixed(1)} × ${dailyMin} ~ ${dailyMax}<br>
+        = <strong>${totalMin.toFixed(0)} ~ ${totalMax.toFixed(0)} ml</strong><br><br>
+        🍼 <strong>每次奶量计算：</strong><br>
+        = (${totalMin.toFixed(0)} ~ ${totalMax.toFixed(0)}) ÷ ${times}<br>
+        = <strong>${perMin.toFixed(0)} ~ ${perMax.toFixed(0)} ml</strong><br><br>
+        ⏱️ 建议每日喂奶次数：<strong>${times} 次</strong><br><br>
+        ✅ 奶量仅供参考，请结合宝宝食欲、吐奶情况和体重增长进行微调。
+      `;
+    }
+</script>
