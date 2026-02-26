@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% assign page_title = page.title | default: site.title %}
+    {% assign page_description = page.excerpt | default: page.description | default: site.description | strip_html | strip_newlines | truncate: 160 %}
+    {% assign canonical_url = page.url | absolute_url %}
+    {% assign share_image = page.image | default: site.default_image %}
+
+    <title>{{ page_title }}</title>
+    <meta name="description" content="{{ page_description }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    <meta property="og:title" content="{{ page_title }}">
+    <meta property="og:description" content="{{ page_description }}">
+    <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+    <meta property="og:url" content="{{ canonical_url }}">
+    {% if share_image %}
+    <meta property="og:image" content="{{ share_image | absolute_url }}">
+    {% endif %}
+
+    <meta name="twitter:card" content="{% if share_image %}summary_large_image{% else %}summary{% endif %}">
+    <meta name="twitter:title" content="{{ page_title }}">
+    <meta name="twitter:description" content="{{ page_description }}">
+    {% if share_image %}
+    <meta name="twitter:image" content="{{ share_image | absolute_url }}">
+    {% endif %}
+</head>
+<body>
+{{ content }}
+</body>
+</html>
