@@ -1,159 +1,33 @@
 ---
 title: 首页
+layout: default
 ---
 
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{{ page.title }} | {{ site.title | default: "CaroNiu Blog" }}</title>
-  <style>
-    :root {
-      color-scheme: light;
-      --bg: #f8fafc;
-      --card: #ffffff;
-      --text: #0f172a;
-      --muted: #475569;
-      --primary: #2563eb;
-      --border: #e2e8f0;
-    }
+<section class="hero-panel">
+  <h1 class="h1 mb-2">{{ site.title | default: "CaroNiu 的小站" }}</h1>
+  <p class="f4 color-fg-muted mb-0">{{ site.description | default: "记录育儿、生活与学习笔记，分享实用工具。" }}</p>
+</section>
 
-    * { box-sizing: border-box; }
+<section class="content-panel">
+  <h2 class="h3">最近文章</h2>
+  {% for post in site.posts limit: 8 %}
+    <article class="post-entry">
+      <div class="color-fg-muted text-small">{{ post.date | date: "%Y-%m-%d" }}</div>
+      <a class="Link--primary text-bold" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      {% if post.excerpt %}
+        <p class="color-fg-muted">{{ post.excerpt | strip_html | truncate: 110 }}</p>
+      {% endif %}
+    </article>
+  {% else %}
+    <div class="post-entry color-fg-muted">还没有发布文章，先去写第一篇吧 ✍️</div>
+  {% endfor %}
+</section>
 
-    body {
-      margin: 0;
-      font-family: "Microsoft YaHei", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    .container {
-      width: min(980px, 92vw);
-      margin: 0 auto;
-      padding: 24px 0 48px;
-    }
-
-    .nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-
-    .nav a {
-      text-decoration: none;
-      color: var(--primary);
-      border: 1px solid #bfdbfe;
-      background: #eff6ff;
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-size: 14px;
-    }
-
-    .hero,
-    .section,
-    .entry,
-    .tool-card {
-      background: var(--card);
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.04);
-    }
-
-    .hero,
-    .section { padding: 24px; margin-bottom: 20px; }
-
-    h1,h2,h3 { margin: 0 0 12px; }
-
-    .hero p,
-    .section p,
-    .entry p { margin: 0; color: var(--muted); }
-
-    .post-list { display: grid; gap: 14px; margin-top: 12px; }
-
-    .entry { padding: 16px 18px; }
-
-    .entry a { color: var(--primary); text-decoration: none; font-weight: 700; }
-
-    .entry small { color: #64748b; display: block; margin-bottom: 6px; }
-
-    .tools { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 12px; }
-
-    .tool-card { padding: 18px; }
-
-    .tool-card a { color: var(--primary); text-decoration: none; font-weight: 700; }
-
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    .footer-links a {
-      text-decoration: none;
-      color: var(--primary);
-      background: #f1f5f9;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      padding: 8px 12px;
-    }
-  </style>
-</head>
-<body>
-  <main class="container">
-    <nav class="nav" aria-label="站点导航">
-      <a href="{{ '/' | relative_url }}">首页</a>
-      <a href="{{ '/about/' | relative_url }}">关于</a>
-      <a href="{{ '/archive/' | relative_url }}">归档</a>
-      <a href="{{ '/categories/' | relative_url }}">分类</a>
-      <a href="{{ '/pages/milk-calculator.html' | relative_url }}">奶量计算器</a>
-    </nav>
-
-    <section class="hero">
-      <h1>{{ site.title | default: "CaroNiu 的小站" }}</h1>
-      <p>{{ site.description | default: "记录育儿、生活与学习笔记，分享实用工具。" }}</p>
-    </section>
-
-    <section class="section">
-      <h2>最近文章</h2>
-      <div class="post-list">
-        {% for post in site.posts limit: 8 %}
-          <article class="entry">
-            <small>{{ post.date | date: "%Y-%m-%d" }}</small>
-            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-            {% if post.excerpt %}
-              <p>{{ post.excerpt | strip_html | truncate: 110 }}</p>
-            {% endif %}
-          </article>
-        {% else %}
-          <article class="entry">
-            <p>还没有发布文章，先去写第一篇吧 ✍️</p>
-          </article>
-        {% endfor %}
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>工具</h2>
-      <div class="tools">
-        <article class="tool-card">
-          <h3>婴儿奶量计算器 🍼</h3>
-          <p>根据宝宝月龄和体重快速估算建议奶量区间与喂奶频次。</p>
-          <a href="{{ '/pages/milk-calculator.html' | relative_url }}">前往工具</a>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>浏览入口</h2>
-      <div class="footer-links">
-        <a href="{{ '/categories/' | relative_url }}">分类</a>
-        <a href="{{ '/archive/' | relative_url }}">归档</a>
-      </div>
-    </section>
-  </main>
-</body>
-</html>
+<section class="content-panel">
+  <h2 class="h3">实用工具</h2>
+  <div class="tool-cta mt-3">
+    <h3 class="h4 mb-1">婴儿奶量计算器 🍼</h3>
+    <p class="color-fg-muted mb-2">根据宝宝月龄和体重快速估算建议奶量区间与喂奶频次。</p>
+    <a class="btn btn-primary" href="{{ '/pages/milk-calculator.html' | relative_url }}">前往工具</a>
+  </div>
+</section>

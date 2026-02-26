@@ -1,15 +1,10 @@
 ---
 title: 分类
 permalink: /categories/
+layout: default
 ---
 
-<nav>
-  <a href="{{ '/' | relative_url }}">首页</a> ·
-  <a href="{{ '/about/' | relative_url }}">关于</a> ·
-  <a href="{{ '/archive/' | relative_url }}">归档</a> ·
-  <a href="{{ '/categories/' | relative_url }}">分类</a> ·
-  <a href="{{ '/pages/milk-calculator.html' | relative_url }}">奶量计算器</a>
-</nav>
+<section class="content-panel markdown-body">
 
 ## 分类浏览
 
@@ -23,3 +18,5 @@ permalink: /categories/
 {% else %}
 暂无分类内容。
 {% endfor %}
+
+</section>
