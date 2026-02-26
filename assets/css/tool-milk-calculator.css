@@ -1,0 +1,171 @@
+.tool-page {
+    font-family: "Microsoft YaHei", sans-serif;
+    background-color: #f8fafc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+.tool-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 420px;
+    margin-bottom: 25px;
+    box-sizing: border-box;
+}
+
+.tool-title {
+    margin-bottom: 15px;
+    color: #2563eb;
+    text-align: center;
+}
+
+.tool-label {
+    font-weight: bold;
+    display: block;
+    text-align: left;
+    margin-top: 10px;
+}
+
+.tool-input,
+.tool-button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.tool-button {
+    background-color: #2563eb;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 15px;
+}
+
+.tool-button:hover {
+    background-color: #1d4ed8;
+}
+
+.tool-result {
+    margin-top: 15px;
+    font-size: 16px;
+    background-color: #f1f5f9;
+    padding: 15px;
+    border-radius: 10px;
+    line-height: 1.7;
+    word-break: break-word;
+}
+
+.tool-result-hidden {
+    display: none;
+}
+
+.tool-rules {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 700px;
+    box-sizing: border-box;
+}
+
+.tool-rules-text {
+    line-height: 1.6;
+}
+
+.tool-rules-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.tool-rules-table th,
+.tool-rules-table td {
+    border: 1px solid #e5e7eb;
+    padding: 8px 10px;
+    text-align: center;
+}
+
+.tool-rules-table th {
+    background-color: #f3f4f6;
+}
+
+.tool-highlight {
+    background-color: #eff6ff;
+}
+
+@media (max-width: 480px) {
+    .tool-page {
+        padding: 15px;
+    }
+
+    .tool-input,
+    .tool-button {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .tool-result {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .tool-rules {
+        padding: 15px;
+    }
+
+    .tool-rules-table th,
+    .tool-rules-table td {
+        padding: 6px 8px;
+    }
+
+    .tool-rules-table,
+    .tool-rules-table thead,
+    .tool-rules-table tbody,
+    .tool-rules-table th,
+    .tool-rules-table td,
+    .tool-rules-table tr {
+        display: block;
+        width: 100%;
+    }
+
+    .tool-rules-table thead {
+        display: none;
+    }
+
+    .tool-rules-table tr {
+        margin-bottom: 15px;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 10px;
+        background-color: #f9fafb;
+    }
+
+    .tool-rules-table td {
+        text-align: left;
+        border: none;
+        padding: 6px 0;
+        position: relative;
+    }
+
+    .tool-rules-table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: inline-block;
+        width: 140px;
+        color: #333;
+    }
+}
