@@ -1,0 +1,11 @@
+---
+layout: default
+---
+<article class="card">
+  <h2>{{ page.title }}</h2>
+  <p style="color:#64748b; margin-top:0;">发布时间：{{ page.date | date: "%Y-%m-%d %H:%M" }}</p>
+  <div>{{ content }}</div>
+  {% if page.categories %}
+  <p style="margin-top:20px; color:#475569;">分类：{{ page.categories | join: ' / ' }}</p>
+  {% endif %}
+</article>

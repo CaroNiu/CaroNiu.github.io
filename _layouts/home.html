@@ -1,0 +1,25 @@
+---
+layout: default
+---
+<section class="card">
+  <h2>最新文章</h2>
+  {% if site.posts.size > 0 %}
+  <ul>
+    {% for post in site.posts limit:10 %}
+    <li>
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      <small>（{{ post.date | date: "%Y-%m-%d" }}）</small>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>暂时还没有文章，欢迎稍后再来。</p>
+  {% endif %}
+</section>
+
+<section class="card" style="margin-top: 18px;">
+  <h2>实用工具</h2>
+  <ul>
+    <li><a href="{{ '/tools/milk-calculator.html' | relative_url }}">婴儿奶量计算器</a></li>
+  </ul>
+</section>

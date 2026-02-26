@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'zh-CN' }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+  <style>
+    body { font-family: "Microsoft YaHei", sans-serif; margin: 0; background: #f8fafc; color: #0f172a; }
+    .container { max-width: 900px; margin: 0 auto; padding: 24px 16px 48px; }
+    header { margin-bottom: 24px; }
+    .site-title { font-size: 2rem; margin: 0; color: #1d4ed8; }
+    .site-desc { margin: 8px 0 0; color: #475569; }
+    a { color: #1d4ed8; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .card { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.06); }
+    footer { margin-top: 32px; color: #64748b; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1 class="site-title"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+      <p class="site-desc">{{ site.description }}</p>
+    </header>
+    {{ content }}
+    <footer>© {{ "now" | date: "%Y" }} {{ site.title }}</footer>
+  </main>
+</body>
+</html>
