@@ -3,11 +3,11 @@ title: 首页
 layout: default
 ---
 
-<section class="home-guide-panel mb-3">
+<section class="home-guide-panel">
   <div class="guide-head">
-    <p class="guide-kicker mb-1">WELCOME</p>
-    <h1 class="h1 mb-2">{{ site.title | default: "Caro's Blog" }}</h1>
-    <p class="f4 color-fg-muted mb-0">{{ site.description | default: "记录育儿、生活与学习笔记，分享实用工具。" }}</p>
+    <p class="guide-kicker">Welcome</p>
+    <h1>{{ site.title | default: "Caro's Blog" }}</h1>
+    <p>{{ site.description | default: "记录育儿、生活与学习笔记，分享实用工具。" }}</p>
   </div>
   <div class="guide-links" aria-label="网站导引">
     <a class="guide-link-card" href="{{ '/about/' | relative_url }}">
@@ -31,29 +31,29 @@ layout: default
 
 <section class="home-columns">
   <aside class="content-panel profile-panel">
-    <h2 class="h3 mb-3">个人介绍</h2>
+    <h2>个人介绍</h2>
     <p>你好，我是 Caro。这里是我记录育儿实践、学习心得和生活灵感的小站。</p>
     <ul class="profile-list">
       <li>👶 育儿观察：喂养、作息、成长记录</li>
       <li>📚 学习笔记：技术、效率与写作整理</li>
       <li>🌱 生活片段：真实体验与复盘总结</li>
     </ul>
-    <p class="color-fg-muted mb-0">希望这些内容能给你带来一点启发，欢迎常来看看。</p>
+    <p>希望这些内容能给你带来一点启发，欢迎常来看看。</p>
   </aside>
 
   <div class="content-panel featured-panel">
-    <h2 class="h3">文章精华</h2>
-    <p class="color-fg-muted mb-2">优先展示最近发布的内容，快速找到本站重点阅读。</p>
+    <h2>文章精华</h2>
+    <p>优先展示最近发布的内容，快速找到本站重点阅读。</p>
     {% for post in site.posts limit: 6 %}
       <article class="post-entry">
-        <div class="color-fg-muted text-small">{{ post.date | date: "%Y-%m-%d" }}</div>
-        <a class="Link--primary text-bold" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
+        <div><a href="{{ post.url | relative_url }}">{{ post.title }}</a></div>
         {% if post.excerpt %}
-          <p class="color-fg-muted">{{ post.excerpt | strip_html | truncate: 110 }}</p>
+          <p>{{ post.excerpt | strip_html | truncate: 110 }}</p>
         {% endif %}
       </article>
     {% else %}
-      <div class="post-entry color-fg-muted">还没有发布文章，先去写第一篇吧 ✍️</div>
+      <div class="post-entry">还没有发布文章，先去写第一篇吧 ✍️</div>
     {% endfor %}
   </div>
 </section>

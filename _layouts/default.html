@@ -28,24 +28,23 @@
     <meta name="twitter:image" content="{{ share_image | absolute_url }}">
     {% endif %}
 
-    <link rel="stylesheet" href="https://unpkg.com/@primer/css@^21.0.0/dist/primer.css">
     <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
 </head>
-<body class="site-body color-bg-subtle">
-<header class="site-header color-bg-default border-bottom">
-    <div class="container-xl px-3 px-md-4 py-3 d-flex flex-wrap flex-items-center flex-justify-between gap-3">
-        <a class="site-brand" href="{{ '/' | relative_url }}">Caro's Blog</a>
-        <nav class="d-flex flex-wrap gap-2" aria-label="站点导航">
-            <a class="btn btn-sm" href="{{ '/' | relative_url }}">首页</a>
-            <a class="btn btn-sm" href="{{ '/about/' | relative_url }}">关于</a>
-            <a class="btn btn-sm" href="{{ '/archive/' | relative_url }}">归档</a>
-            <a class="btn btn-sm" href="{{ '/categories/' | relative_url }}">分类</a>
-            <a class="btn btn-sm btn-primary" href="{{ '/tools/' | relative_url }}">小工具</a>
+<body class="site-body">
+<header class="site-header">
+    <div class="site-shell site-header-inner">
+        <a class="site-brand" href="{{ '/' | relative_url }}">{{ site.title | default: "Caro's Blog" }}</a>
+        <nav class="site-nav" aria-label="站点导航">
+            <a href="{{ '/' | relative_url }}">首页</a>
+            <a href="{{ '/about/' | relative_url }}">关于</a>
+            <a href="{{ '/archive/' | relative_url }}">归档</a>
+            <a href="{{ '/categories/' | relative_url }}">分类</a>
+            <a class="nav-cta" href="{{ '/tools/' | relative_url }}">小工具</a>
         </nav>
     </div>
 </header>
 
-<main class="container-xl px-3 px-md-4 py-4">
+<main class="site-shell site-main">
     {{ content }}
 </main>
 </body>
