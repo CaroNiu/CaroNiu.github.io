@@ -1,270 +1,159 @@
+---
+title: 首页
+---
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>婴儿奶量计算器</title>
-    <style>
-        body {
-            font-family: "Microsoft YaHei", sans-serif;
-            background-color: #f8fafc;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ page.title }} | {{ site.title | default: "CaroNiu Blog" }}</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --primary: #2563eb;
+      --border: #e2e8f0;
+    }
 
-        .card {
-            background: #fff;
-            padding: 20px;
-            border-radius: 16px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 420px;
-            margin-bottom: 25px;
-            box-sizing: border-box;
-        }
+    * { box-sizing: border-box; }
 
-        h2 {
-            margin-bottom: 15px;
-            color: #2563eb;
-            text-align: center;
-        }
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
 
-        label {
-            font-weight: bold;
-            display: block;
-            text-align: left;
-            margin-top: 10px;
-        }
+    .container {
+      width: min(980px, 92vw);
+      margin: 0 auto;
+      padding: 24px 0 48px;
+    }
 
-        input, button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 6px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-            box-sizing: border-box;
-        }
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
 
-        button {
-            background-color: #2563eb;
-            color: white;
-            border: none;
-            cursor: pointer;
-            transition: 0.3s;
-            margin-top: 15px;
-        }
+    .nav a {
+      text-decoration: none;
+      color: var(--primary);
+      border: 1px solid #bfdbfe;
+      background: #eff6ff;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 14px;
+    }
 
-        button:hover {
-            background-color: #1d4ed8;
-        }
+    .hero,
+    .section,
+    .entry,
+    .tool-card {
+      background: var(--card);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.04);
+    }
 
-        .result {
-            margin-top: 15px;
-            font-size: 16px;
-            background-color: #f1f5f9;
-            padding: 15px;
-            border-radius: 10px;
-            line-height: 1.7;
-            word-break: break-word;
-        }
+    .hero,
+    .section { padding: 24px; margin-bottom: 20px; }
 
-        .rules {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 16px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-            width: 100%;
-            max-width: 700px;
-            box-sizing: border-box;
-        }
+    h1,h2,h3 { margin: 0 0 12px; }
 
-        /* 原始表格，仅大屏显示 */
-        .rules table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
+    .hero p,
+    .section p,
+    .entry p { margin: 0; color: var(--muted); }
 
-        th, td {
-            border: 1px solid #e5e7eb;
-            padding: 8px 10px;
-            text-align: center;
-        }
+    .post-list { display: grid; gap: 14px; margin-top: 12px; }
 
-        th {
-            background-color: #f3f4f6;
-        }
+    .entry { padding: 16px 18px; }
 
-        .highlight {
-            background-color: #eff6ff;
-        }
+    .entry a { color: var(--primary); text-decoration: none; font-weight: 700; }
 
-        /* 响应式优化 */
-        @media (max-width: 480px) {
-            body {
-                padding: 15px;
-            }
+    .entry small { color: #64748b; display: block; margin-bottom: 6px; }
 
-            input, button {
-                font-size: 14px;
-                padding: 8px;
-            }
+    .tools { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 12px; }
 
-            .result {
-                font-size: 14px;
-                padding: 10px;
-            }
+    .tool-card { padding: 18px; }
 
-            .rules {
-                padding: 15px;
-            }
+    .tool-card a { color: var(--primary); text-decoration: none; font-weight: 700; }
 
-            th, td {
-                padding: 6px 8px;
-            }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
 
-            /* 手机下表格改卡片式展示 */
-            .rules table, .rules thead, .rules tbody, .rules th, .rules td, .rules tr {
-                display: block;
-                width: 100%;
-            }
-
-            .rules thead {
-                display: none;
-            }
-
-            .rules tr {
-                margin-bottom: 15px;
-                border: 1px solid #e5e7eb;
-                border-radius: 12px;
-                padding: 10px;
-                background-color: #f9fafb;
-            }
-
-            .rules td {
-                text-align: left;
-                border: none;
-                padding: 6px 0;
-                position: relative;
-            }
-
-            .rules td::before {
-                content: attr(data-label);
-                font-weight: bold;
-                display: inline-block;
-                width: 140px;
-                color: #333;
-            }
-        }
-    </style>
+    .footer-links a {
+      text-decoration: none;
+      color: var(--primary);
+      background: #f1f5f9;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+    }
+  </style>
 </head>
 <body>
+  <main class="container">
+    <nav class="nav" aria-label="站点导航">
+      <a href="{{ '/' | relative_url }}">首页</a>
+      <a href="{{ '/about/' | relative_url }}">关于</a>
+      <a href="{{ '/archive/' | relative_url }}">归档</a>
+      <a href="{{ '/categories/' | relative_url }}">分类</a>
+      <a href="{{ '/pages/milk-calculator.html' | relative_url }}">奶量计算器</a>
+    </nav>
 
-<div class="card">
-    <h2>婴儿奶量计算器 🍼</h2>
-    <label>宝宝月龄（月）</label>
-    <input type="number" id="age" placeholder="请输入月龄，例如 2" min="0" max="24">
+    <section class="hero">
+      <h1>{{ site.title | default: "CaroNiu 的小站" }}</h1>
+      <p>{{ site.description | default: "记录育儿、生活与学习笔记，分享实用工具。" }}</p>
+    </section>
 
-    <label>宝宝体重（kg）</label>
-    <input type="number" id="weight" placeholder="请输入体重，例如 5.5" step="0.1" min="1" max="20">
+    <section class="section">
+      <h2>最近文章</h2>
+      <div class="post-list">
+        {% for post in site.posts limit: 8 %}
+          <article class="entry">
+            <small>{{ post.date | date: "%Y-%m-%d" }}</small>
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            {% if post.excerpt %}
+              <p>{{ post.excerpt | strip_html | truncate: 110 }}</p>
+            {% endif %}
+          </article>
+        {% else %}
+          <article class="entry">
+            <p>还没有发布文章，先去写第一篇吧 ✍️</p>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
 
-    <button onclick="calculateMilk()">计算奶量</button>
+    <section class="section">
+      <h2>工具</h2>
+      <div class="tools">
+        <article class="tool-card">
+          <h3>婴儿奶量计算器 🍼</h3>
+          <p>根据宝宝月龄和体重快速估算建议奶量区间与喂奶频次。</p>
+          <a href="{{ '/pages/milk-calculator.html' | relative_url }}">前往工具</a>
+        </article>
+      </div>
+    </section>
 
-    <div id="result" class="result" style="display:none;"></div>
-</div>
-
-<div class="rules">
-    <h3>📘 奶量计算规则说明</h3>
-    <p style="line-height:1.6;">
-        奶量根据宝宝月龄和体重综合计算，遵循国际儿科通用标准：<br>
-        <strong>每日总奶量（ml） = 体重（kg） × 对应阶段的每公斤奶量（ml/kg/天）</strong><br>
-        奶量随月龄增加逐渐下降，辅食添加后可进一步减少。
-    </p>
-
-    <table>
-        <thead>
-        <tr>
-            <th>月龄阶段</th>
-            <th>每日每公斤奶量 (ml/kg)</th>
-            <th>建议每日喂奶次数</th>
-            <th>说明</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr class="highlight">
-            <td data-label="月龄阶段">0–1个月</td>
-            <td data-label="每日每公斤奶量 (ml/kg)">150–200</td>
-            <td data-label="建议每日喂奶次数">8次</td>
-            <td data-label="说明">新生儿期，胃容量小，喂奶频繁</td>
-        </tr>
-        <tr>
-            <td data-label="月龄阶段">1–3个月</td>
-            <td data-label="每日每公斤奶量 (ml/kg)">120–150</td>
-            <td data-label="建议每日喂奶次数">6次</td>
-            <td data-label="说明">吃奶间隔可延长</td>
-        </tr>
-        <tr>
-            <td data-label="月龄阶段">3–6个月</td>
-            <td data-label="每日每公斤奶量 (ml/kg)">100–120</td>
-            <td data-label="建议每日喂奶次数">5次</td>
-            <td data-label="说明">逐渐形成规律喂养</td>
-        </tr>
-        <tr>
-            <td data-label="月龄阶段">6个月以上</td>
-            <td data-label="每日每公斤奶量 (ml/kg)">80–100</td>
-            <td data-label="建议每日喂奶次数">4次</td>
-            <td data-label="说明">已开始添加辅食，奶量减少</td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
-<script>
-    function calculateMilk() {
-        const age = parseFloat(document.getElementById("age").value);
-        const weight = parseFloat(document.getElementById("weight").value);
-        const resultDiv = document.getElementById("result");
-
-        if (isNaN(age) || isNaN(weight) || age < 0 || weight <= 0) {
-            resultDiv.style.display = "block";
-            resultDiv.innerHTML = "⚠️ 请输入正确的月龄和体重。";
-            return;
-        }
-
-        let dailyMin, dailyMax, times;
-
-        if (age <= 1) { dailyMin = 150; dailyMax = 200; times = 8; }
-        else if (age <= 3) { dailyMin = 120; dailyMax = 150; times = 6; }
-        else if (age <= 6) { dailyMin = 100; dailyMax = 120; times = 5; }
-        else { dailyMin = 80; dailyMax = 100; times = 4; }
-
-        const totalMin = weight * dailyMin;
-        const totalMax = weight * dailyMax;
-        const perMin = totalMin / times;
-        const perMax = totalMax / times;
-
-        resultDiv.style.display = "block";
-        resultDiv.innerHTML = `
-        <strong>计算结果：</strong><br>
-        👶 宝宝月龄：${age} 个月<br>
-        ⚖️ 宝宝体重：${weight.toFixed(1)} kg<br><br>
-        📅 <strong>每日奶量计算：</strong><br>
-        = ${weight.toFixed(1)} × ${dailyMin} ~ ${dailyMax}<br>
-        = <strong>${totalMin.toFixed(0)} ~ ${totalMax.toFixed(0)} ml</strong><br><br>
-        🍼 <strong>每次奶量计算：</strong><br>
-        = (${totalMin.toFixed(0)} ~ ${totalMax.toFixed(0)}) ÷ ${times}<br>
-        = <strong>${perMin.toFixed(0)} ~ ${perMax.toFixed(0)} ml</strong><br><br>
-        ⏱️ 建议每日喂奶次数：<strong>${times} 次</strong><br><br>
-        ✅ 奶量仅供参考，请结合宝宝食欲、吐奶情况和体重增长进行微调。
-      `;
-    }
-</script>
-
+    <section class="section">
+      <h2>浏览入口</h2>
+      <div class="footer-links">
+        <a href="{{ '/categories/' | relative_url }}">分类</a>
+        <a href="{{ '/archive/' | relative_url }}">归档</a>
+      </div>
+    </section>
+  </main>
 </body>
 </html>
