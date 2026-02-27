@@ -8,6 +8,10 @@
     --brand: #cc7a29;
     --brand-dark: #9e5717;
     --shadow: 0 18px 35px rgba(83, 43, 10, 0.08);
+    --page-glow-a: #fff3e4;
+    --page-glow-b: #ffe8dc;
+    --header-bg: rgba(255, 253, 250, 0.88);
+    --header-border: rgba(199, 151, 108, 0.22);
 }
 
 * {
@@ -19,8 +23,8 @@ body.site-body {
     color: var(--text);
     font-family: "Inter", "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
     line-height: 1.65;
-    background: radial-gradient(circle at 20% 0%, #fff3e4 0%, rgba(255, 243, 228, 0.3) 35%, transparent 50%),
-        radial-gradient(circle at 90% 0%, #ffe8dc 0%, rgba(255, 232, 220, 0.3) 28%, transparent 48%),
+    background: radial-gradient(circle at 20% 0%, var(--page-glow-a) 0%, rgba(255, 243, 228, 0.3) 35%, transparent 50%),
+        radial-gradient(circle at 90% 0%, var(--page-glow-b) 0%, rgba(255, 232, 220, 0.3) 28%, transparent 48%),
         var(--bg);
 }
 
@@ -34,8 +38,8 @@ body.site-body {
     top: 0;
     z-index: 20;
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(199, 151, 108, 0.22);
-    background: rgba(255, 253, 250, 0.88);
+    border-bottom: 1px solid var(--header-border);
+    background: var(--header-bg);
 }
 
 .site-header-inner {
@@ -104,6 +108,120 @@ body.site-body {
     background: linear-gradient(140deg, #fff7ef 0%, #fff 42%, #fff3e7 100%);
     box-shadow: 0 20px 40px rgba(123, 78, 35, 0.12);
     padding: 2rem;
+}
+
+body[data-season="spring"] {
+    --bg: #f8fff8;
+    --surface: #ffffff;
+    --surface-soft: #f5fff6;
+    --text: #1f3526;
+    --muted: #4f6f58;
+    --border: #c8e7d0;
+    --brand: #3c9a5f;
+    --brand-dark: #2f7a4c;
+    --page-glow-a: #d9f7e2;
+    --page-glow-b: #f4ffe3;
+    --header-bg: rgba(246, 255, 247, 0.9);
+    --header-border: rgba(60, 154, 95, 0.25);
+}
+
+body[data-season="summer"] {
+    --bg: #f3fbff;
+    --surface: #ffffff;
+    --surface-soft: #edf7ff;
+    --text: #153245;
+    --muted: #4d6674;
+    --border: #c8e2f1;
+    --brand: #2d7bb8;
+    --brand-dark: #1e6294;
+    --page-glow-a: #dff5ff;
+    --page-glow-b: #e4f4ff;
+    --header-bg: rgba(245, 252, 255, 0.9);
+    --header-border: rgba(45, 123, 184, 0.23);
+}
+
+body[data-season="autumn"] {
+    --bg: #fff9f0;
+    --surface: #ffffff;
+    --surface-soft: #fff7ec;
+    --text: #352514;
+    --muted: #7a5b3f;
+    --border: #f0d9bc;
+    --brand: #c2772c;
+    --brand-dark: #92531a;
+    --page-glow-a: #ffe8cb;
+    --page-glow-b: #ffe2d7;
+    --header-bg: rgba(255, 249, 240, 0.9);
+    --header-border: rgba(194, 119, 44, 0.24);
+}
+
+body[data-season="winter"] {
+    --bg: #edf3ff;
+    --surface: #ffffff;
+    --surface-soft: #f2f6ff;
+    --text: #182539;
+    --muted: #55647b;
+    --border: #ced9f2;
+    --brand: #5277d6;
+    --brand-dark: #3d5db0;
+    --page-glow-a: #d8e4ff;
+    --page-glow-b: #e8eefe;
+    --header-bg: rgba(238, 244, 255, 0.9);
+    --header-border: rgba(82, 119, 214, 0.24);
+}
+
+.platform-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.85rem;
+}
+
+.platform-card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.9rem;
+    background: var(--surface-soft);
+}
+
+.platform-card h3 {
+    margin: 0 0 0.4rem;
+    font-size: 1rem;
+}
+
+.platform-card p,
+.platform-card li {
+    color: var(--muted);
+    margin: 0.2rem 0;
+    font-size: 0.92rem;
+}
+
+.status-line {
+    margin-top: 0.8rem;
+    font-size: 0.9rem;
+    color: var(--muted);
+}
+
+.tool-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.6rem;
+}
+
+.tool-actions button {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    border-radius: 999px;
+    padding: 0.35rem 0.75rem;
+    cursor: pointer;
+    color: var(--text);
+}
+
+.tool-result {
+    margin-top: 0.7rem;
+    border-left: 3px solid var(--brand);
+    padding-left: 0.7rem;
+    font-size: 0.93rem;
 }
 
 .guide-kicker {
@@ -271,6 +389,11 @@ body.site-body {
     height: 100%;
     pointer-events: none;
     z-index: 1;
+}
+
+body[data-season="winter"] #snow-canvas,
+body[data-season="autumn"] #snow-canvas {
+    opacity: 1;
 }
 
 .site-header,
