@@ -1,0 +1,27 @@
+---
+layout: default
+---
+
+<article class="post-detail">
+  <header class="post-detail-header">
+    <h1>{{ page.title }}</h1>
+    <p class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y-%m-%d" }}</time>
+      {% if page.categories and page.categories.size > 0 %}
+        · 分类：{{ page.categories | join: " / " }}
+      {% endif %}
+      {% if page.tags and page.tags.size > 0 %}
+        · 标签：{{ page.tags | join: " · " }}
+      {% endif %}
+    </p>
+    {% if page.cover %}
+      <figure class="post-cover">
+        <img src="{{ page.cover | relative_url }}" alt="{{ page.title }}">
+      </figure>
+    {% endif %}
+  </header>
+
+  <section class="post-content">
+    {{ content }}
+  </section>
+</article>
