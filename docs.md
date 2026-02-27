@@ -10,6 +10,8 @@ layout: default
 
 以下文档基于公开技术社区（CSDN、博客园等）高频实践主题整理，按阶段学习并支持快速跳转。
 
+> 每个阶段都附带开放平台入口，便于对照官方文档深入学习。
+
 <nav class="doc-jump-nav" aria-label="学习分类跳转">
   <a href="#java基础">Java基础</a>
   <a href="#java进阶">Java进阶</a>
@@ -31,6 +33,20 @@ layout: default
 {% else %}
 - 暂无文档。
 {% endfor %}
+
+{% if category_name == 'java基础' %}
+- 官方入口：<https://docs.oracle.com/javase/tutorial/>
+{% elsif category_name == 'java进阶' %}
+- 官方入口：<https://openjdk.org/projects/>
+{% elsif category_name == 'Spring学习' or category_name == 'SpringBoot' or category_name == 'SpringCloud' %}
+- 官方入口：<https://spring.io/projects>
+{% elsif category_name == 'ES' %}
+- 官方入口：<https://www.elastic.co/guide/index.html>
+{% elsif category_name == 'MQ' %}
+- 官方入口：<https://rocketmq.apache.org/docs/>
+{% elsif category_name == 'Redis' %}
+- 官方入口：<https://redis.io/docs/latest/>
+{% endif %}
 
 {% endfor %}
 

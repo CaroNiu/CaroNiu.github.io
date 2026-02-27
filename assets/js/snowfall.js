@@ -10,7 +10,8 @@
   let height = 0;
   let pointer = { x: -9999, y: -9999, active: false };
   const flakes = [];
-  const FLAKE_COUNT = 140;
+  const season = document.body.dataset.season || 'winter';
+  const FLAKE_COUNT = season === 'winter' ? 220 : 150;
 
   function resize() {
     width = canvas.width = window.innerWidth;
@@ -74,7 +75,10 @@
       ctx.beginPath();
       ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(255, 255, 255, ${flake.alpha})`;
+      ctx.shadowColor = 'rgba(60, 90, 160, 0.35)';
+      ctx.shadowBlur = 6;
       ctx.fill();
+      ctx.shadowBlur = 0;
     }
 
     requestAnimationFrame(animate);
