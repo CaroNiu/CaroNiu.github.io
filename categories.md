@@ -8,21 +8,26 @@ layout: default
 
 ## 分类浏览
 
+{% assign sorted_categories = site.categories | sort %}
+
+{% if sorted_categories and sorted_categories.size > 0 %}
 <nav class="doc-jump-nav" aria-label="分类跳转">
-  {% assign category_names = site.categories | map: 'first' | sort %}
-  {% for category_name in category_names %}
+  {% for category in sorted_categories %}
+  {% assign category_name = category[0] %}
   <a href="#cat-{{ category_name | slugify }}">{{ category_name }}</a>
   {% endfor %}
 </nav>
 
-{% for category_name in category_names %}
+{% for category in sorted_categories %}
+{% assign category_name = category[0] %}
+{% assign posts_in_category = category[1] %}
 ### <span id="cat-{{ category_name | slugify }}">{{ category_name }}</span>
-{% assign posts_in_category = site.categories[category_name] %}
 {% for post in posts_in_category %}
 - [{{ post.title }}]({{ post.url | relative_url }})
 {% endfor %}
+{% endfor %}
 {% else %}
 暂无分类内容。
-{% endfor %}
+{% endif %}
 
 </section>
