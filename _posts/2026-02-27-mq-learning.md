@@ -6,7 +6,7 @@ tags:
   - MQ
 categories:
   - MQ
-excerpt: "关注解耦、削峰与最终一致性。"
+excerpt: "围绕消息队列的核心模型、可靠性设计与运维监控展开，强调解耦削峰与最终一致性实践，补充重试、死信与幂等等关键方案，帮助你构建可观测、可恢复、可扩展的异步系统与治理闭环。"
 cover: "/assets/images/social-card.svg"
 ---
 

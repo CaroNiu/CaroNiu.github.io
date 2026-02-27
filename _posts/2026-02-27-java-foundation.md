@@ -6,7 +6,7 @@ tags:
   - java基础
 categories:
   - java基础
-excerpt: "面向零基础到可独立开发。"
+excerpt: "面向零基础学习者，按语法基础、面向对象、常用集合与 Web 项目实战四步推进，配合阶段目标与练习建议，帮助你在有限时间内构建可落地的 Java 开发能力、项目经验与问题定位思路。"
 cover: "/assets/images/social-card.svg"
 ---
 

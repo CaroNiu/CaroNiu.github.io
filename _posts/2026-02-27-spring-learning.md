@@ -6,7 +6,7 @@ tags:
   - Spring学习
 categories:
   - Spring学习
-excerpt: "系统掌握 Spring 核心。"
+excerpt: "系统梳理 IOC、AOP、事务与 MVC 核心机制，通过分阶段案例理解容器原理和工程实践，覆盖常见误区与排查思路，让 Spring 学习从概念记忆升级为可复用、可迁移的开发能力。"
 cover: "/assets/images/social-card.svg"
 ---
 

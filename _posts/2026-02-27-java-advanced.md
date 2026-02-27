@@ -6,7 +6,7 @@ tags:
   - java进阶
 categories:
   - java进阶
-excerpt: "聚焦面试与生产环境能力。"
+excerpt: "聚焦面试高频与生产问题，围绕性能分析、架构设计与稳定性治理分阶段学习，结合典型故障场景与优化方法，帮助开发者从“会写代码”进阶到“能扛复杂系统”、能持续改进服务质量。"
 cover: "/assets/images/social-card.svg"
 ---
 

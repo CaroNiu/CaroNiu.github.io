@@ -6,7 +6,7 @@ tags:
   - SpringCloud
 categories:
   - SpringCloud
-excerpt: "围绕注册发现、配置、网关与容错。"
+excerpt: "围绕服务注册发现、网关鉴权与链路治理构建微服务知识路线，兼顾组件原理与落地实践，覆盖调用链监控与故障演练，帮助你完成从单体到分布式系统的能力升级、稳定性建设与实践方法。"
 cover: "/assets/images/social-card.svg"
 ---
 

@@ -6,7 +6,7 @@ tags:
   - ES
 categories:
   - ES
-excerpt: "覆盖索引设计、查询优化与集群运维。"
+excerpt: "覆盖索引建模、查询聚合优化与集群运维三大阶段，结合阶段产出设计学习路径，补充常见性能瓶颈与排障方向，帮助你建立 Elasticsearch 从开发、压测到稳定运行的完整能力。"
 cover: "/assets/images/social-card.svg"
 ---
 
