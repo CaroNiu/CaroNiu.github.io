@@ -6,7 +6,7 @@ tags:
   - SpringBoot
 categories:
   - SpringBoot
-excerpt: "从快速开发到生产治理。"
+excerpt: "从自动配置原理到组件整合与生产治理，覆盖 Spring Boot 常见实战路径，结合服务搭建、配置管理与可观测实践，帮助你快速上线业务并掌握监控告警、灰度发布与回滚等关键能力。"
 cover: "/assets/images/social-card.svg"
 ---
 

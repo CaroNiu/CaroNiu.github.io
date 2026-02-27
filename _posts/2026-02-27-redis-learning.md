@@ -6,7 +6,7 @@ tags:
   - Redis
 categories:
   - Redis
-excerpt: "覆盖数据结构、分布式锁与缓存治理。"
+excerpt: "覆盖 Redis 数据结构、高可用架构与缓存治理关键问题，通过阶段化训练掌握分布式锁、热点治理和故障排查等高并发场景能力，并形成可复用的缓存设计与运维优化方法。"
 cover: "/assets/images/social-card.svg"
 ---
 
